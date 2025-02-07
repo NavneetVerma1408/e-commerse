@@ -1,0 +1,56 @@
+.modal-title button {
+  border: none;
+  background: none;
+}
+
+.modal-title button span {
+  font-size: 20px;
+  line-height: 18px;
+}
+
+.modal-title button:focus {
+  outline: none;
+}
+
+.typing {
+  display: inline-flex;
+  margin-right: 5px;
+}
+
+.typing span {
+  width: 4px;
+  height: 4px;
+  background: #0c831f;
+  border-radius: 50%;
+  margin: 0 0.1em;
+  animation: jump 1500ms infinite;
+}
+
+.typing span:nth-child(2) {
+  animation-delay: 250ms;
+}
+
+.typing span:nth-child(3) {
+  animation-delay: 500ms;
+}
+
+.addr-modal {
+  position: absolute !important;
+  left: 77px;
+  top: 32px;
+}
+
+@media only screen and (max-width:992px) {
+  .cart-offcanvas.offcanvas.offcanvas-end {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width:768px) {
+  .addr-modal {
+    top: unset;
+    left: 0px !important;
+    bottom: -28px;
+    transform: none;
+  }
+}
