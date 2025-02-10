@@ -57,7 +57,7 @@ const AddressSelectComponent = ({ closeAddressModal }) => {
               cardTop="Home"
               cardMdl="H83V+R2Q, Khajur Colony, Block D, Sector 44, Noida, Uttar
                 Pradesh 201303, India"
-              cardImgMaxWidth={40}
+              cardImgHght={40}
               specialClassOn={0}
               cardAction={true}
               onCardClick={() => handleChangeAddress(28.5546, 77.34261)}
@@ -70,7 +70,7 @@ const AddressSelectComponent = ({ closeAddressModal }) => {
               cardTop="Other"
               cardMdl="OFFICE, SHIV NADAR SCHOOL-3, 1, Noida-Greater Noida Expy,
                 Chhaprauli Bangar, Sector 135"
-              cardImgMaxWidth={40}
+              cardImgHght={40}
               specialClassOn={0}
               cardAction={true}
               onCardClick={() => handleChangeAddress(28.494758, 77.411735)}

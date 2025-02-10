@@ -39,3 +39,22 @@
 .bil-lft span {
     margin-left: 5px;
 }
+
+.cart-btm {
+    background: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.slctd-addr {
+    display: flex;
+    justify-content: space-between;
+    align-items: self-start;
+}
+
+.slctd-addr a {
+   
+}

@@ -1,3 +1,4 @@
+import AddToCartBtn from "../add-to-cart-btn/AddToCartBtn";
 import "./CommonCard.css";
 const CommonCard = ({
   cardImg,
@@ -5,33 +6,41 @@ const CommonCard = ({
   cardTop,
   cardMdl,
   cardBtm,
-  cardImgMaxWidth = 70,
+  cardImgHght = 70,
   specialClassOn = -1,
-  cardAction = false,
   onCardClick,
   onEditClick,
   onDeleteClick,
+  cardAction = false,
+  addCartBtn = false,
+  chngAddr = false,
 }) => {
   return (
     <div className="crd-cntnr" onClick={() => onCardClick()}>
       {cardImg && (
         <div
           className={`crd-img ${cardImgRound ? "rndImg" : ""}`}
-          style={{ height: cardImgMaxWidth + "px" }}
+          style={{ height: cardImgHght + "px" }}
         >
           <img src={cardImg} />
         </div>
       )}
 
       <div className="crd-dtl">
-        <div className={specialClassOn == 0 ? "specialClass" : ""}>
-          {cardTop}
+        <div className={`cardTop ${specialClassOn == 0 ? "specialClass" : ""}`}>
+          <span>{cardTop}</span>
+          {chngAddr && <a className="chngAddr">Change</a>}
         </div>
-        <div className={specialClassOn == 1 ? "specialClass" : ""}>
-          {cardMdl}
+        <div className={`cardMdl ${specialClassOn == 1 ? "specialClass" : ""}`}>
+          <span>{cardMdl}</span>
         </div>
-        <div className={specialClassOn == 2 ? "specialClass" : ""}>
-          {cardBtm}
+        <div className={`cardBtm ${specialClassOn == 2 ? "specialClass" : ""}`}>
+          <span>{cardBtm}</span>
+          {addCartBtn && (
+            <div className="addCartBtn">
+              <AddToCartBtn />
+            </div>
+          )}
         </div>
         {cardAction && (
           <div className="crd-actn">

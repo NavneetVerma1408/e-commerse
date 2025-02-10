@@ -5,6 +5,8 @@
     margin: 10px 0;
     padding: 10px;
     border-radius: 10px;
+    position: relative;
+    width: 100%;
 }
 
 .crd-img {
@@ -32,7 +34,7 @@
     padding-right: 15px;
 }
 
-.crd-dtl div {
+.crd-dtl>div {
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
@@ -43,13 +45,40 @@
     overflow: hidden;
 }
 
-.crd-dtl div:nth-child(2) {
+.cardMdl {
     padding: 4px 0px;
     color: rgb(105, 105, 105);
 }
 
-.crd-dtl div:nth-child(3) {
+.cardBtm {
     color: rgb(31, 31, 31);
+}
+
+.crd-dtl div.cardTop,
+.crd-dtl div.cardBtm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addCartBtn,
+.chngAddr {
+    position: absolute;
+    right: 10px;
+}
+
+.addCartBtn {
+    bottom: 0px;
+}
+
+.chngAddr {
+    top: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    color: rgb(12, 131, 31);
 }
 
 .crd-dtl div.specialClass {
@@ -58,7 +87,7 @@
 }
 
 .crd-actn {
-    display: flex!important;
+    display: flex !important;
     gap: 10px;
     align-items: center;
 }

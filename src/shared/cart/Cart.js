@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Cart.css";
 import CommonCard from "../common-card/CommonCard";
-import AddToCartBtn from "../add-to-cart-btn/AddToCartBtn";
+import { LocationContext } from "../../context/LocationContext";
+// import AddToCartBtn from "../add-to-cart-btn/AddToCartBtn";
 const Cart = ({ closeCartOffcanvas }) => {
+  const { address } = useContext(LocationContext);
   return (
     <div className="cart-cntnr">
       <div className="offcanvas-header">
@@ -24,9 +26,9 @@ const Cart = ({ closeCartOffcanvas }) => {
               cardImg="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=180/assets/eta-icons/15-mins-filled.png"
               cardTop="Delivery in 8 minutes"
               cardMdl="Shipment of 3 items"
-              cardImgMaxWidth={40}
+              cardImgHght={40}
               specialClassOn={0}
-              onCardClick={()=>{}}
+              onCardClick={() => {}}
             />
           </div>
           <div className="cart-item-card">
@@ -36,9 +38,9 @@ const Cart = ({ closeCartOffcanvas }) => {
               cardMdl="1 pack (32 pieces)"
               cardBtm="₹28"
               specialClassOn={2}
-              onCardClick={()=>{}}
+              addCartBtn={true}
+              onCardClick={() => {}}
             />
-            <AddToCartBtn />
           </div>
           <div className="cart-item-card">
             <CommonCard
@@ -47,9 +49,9 @@ const Cart = ({ closeCartOffcanvas }) => {
               cardMdl="500 ml"
               cardBtm="₹29"
               specialClassOn={2}
-              onCardClick={()=>{}}
+              addCartBtn={true}
+              onCardClick={() => {}}
             />
-            <AddToCartBtn />
           </div>
           <div className="cart-item-card">
             <CommonCard
@@ -58,9 +60,9 @@ const Cart = ({ closeCartOffcanvas }) => {
               cardMdl="1 pack (32 pieces)"
               cardBtm="₹90"
               specialClassOn={2}
-              onCardClick={()=>{}}
+              addCartBtn={true}
+              onCardClick={() => {}}
             />
-            <AddToCartBtn />
           </div>
         </div>
 
@@ -105,8 +107,22 @@ const Cart = ({ closeCartOffcanvas }) => {
             cardTop="Cancellation Policy"
             cardMdl="Orders cannot be cancelled once packed for delivery. In case of unexpected delays, a refund will be provided, if applicable."
             specialClassOn={0}
-            onCardClick={()=>{}}
+            onCardClick={() => {}}
           />
+        </div>
+
+        <div className="cart-btm">
+          <div className="slctd-addr">
+            <CommonCard
+              cardImg="https://media.istockphoto.com/id/1193451471/vector/map-pin-vector-glyph-icon.jpg?s=612x612&w=0&k=20&c=wuWVeHuthNAXzjOO5_VY9SUOd-6cxwpVH8VVfh6Y7Lc="
+              cardTop="Delivering to Other"
+              cardMdl={address}
+              cardImgHght={35}
+              specialClassOn={0}
+              chngAddr={true}
+              onCardClick={() => {}}
+            />
+          </div>
         </div>
       </div>
     </div>
