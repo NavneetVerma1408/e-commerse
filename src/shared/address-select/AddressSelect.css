@@ -7,19 +7,6 @@
     position: relative;
 }
 
-.modal-header,
-.modal-body {
-    display: block !important;
-    border-bottom: 0;
-    padding: 0px;
-}
-
-.modal-title {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
 .trck-loc {
     display: flex;
     align-items: center;
@@ -129,7 +116,6 @@
     .addr-select-cntnr {
         width: 100vw;
         height: 75vh;
-        padding: 20px;
     }
 
     .trck-loc {

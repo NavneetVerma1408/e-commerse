@@ -1,17 +1,3 @@
-.modal-title button {
-  border: none;
-  background: none;
-}
-
-.modal-title button span {
-  font-size: 20px;
-  line-height: 18px;
-}
-
-.modal-title button:focus {
-  outline: none;
-}
-
 .typing {
   display: inline-flex;
   margin-right: 5px;

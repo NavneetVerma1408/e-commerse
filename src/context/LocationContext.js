@@ -1,18 +1,16 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { aaaaaaaaaaaaaa } from "../constant/secretkey";
 
 export const LocationContext = createContext();
-export const LocationProvider = ({ children }) => {
-  const secretKey = "AIzaSyCIC8O3L_0tjTtJCSOO-9phy9pz-b_y25A";
 
-  const [selectedAddress, setSelectedAddress] = useState("");
+export const LocationProvider = ({ children }) => {
+  const [address, setAdress] = useState("");
   const [detectingLocation, setDetectingLocation] = useState(false);
 
   useEffect(() => {
     detectLocation();
   }, []);
-
-  useEffect(() => {}, [detectingLocation]);
 
   const detectLocation = () => {
     setDetectingLocation(true);
@@ -32,18 +30,24 @@ export const LocationProvider = ({ children }) => {
     }
   };
 
-  const getAddress = (latitude, longitude) => {
+  const changeAddress = (lat, lng, closeAddressModal) => {
+    setDetectingLocation(true);
+    getAddress(lat, lng, closeAddressModal);
+  };
+
+  const getAddress = (latitude, longitude, closeAddressModal) => {
     axios
       .get(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${secretKey}`
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${aaaaaaaaaaaaaa}`
       )
       .then((response) => {
         const formattedAddress =
           response.data.results[0]?.formatted_address || "Address not found";
-        setSelectedAddress(formattedAddress);
+        setAdress(formattedAddress);
+        if (closeAddressModal) closeAddressModal();
         setTimeout(() => {
           setDetectingLocation(false);
-        }, 2000);
+        }, 1000);
       })
       .catch((error) => {
         alert("Error fetching address");
@@ -53,7 +57,7 @@ export const LocationProvider = ({ children }) => {
 
   return (
     <LocationContext.Provider
-      value={{ selectedAddress, detectingLocation, detectLocation }}
+      value={{ address, detectingLocation, detectLocation, changeAddress }}
     >
       {children}
     </LocationContext.Provider>

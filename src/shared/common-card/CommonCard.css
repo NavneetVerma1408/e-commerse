@@ -1,0 +1,79 @@
+.crd-cntnr {
+    display: flex;
+    gap: 10px;
+    background: #fff;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.crd-img {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 2px;
+}
+
+.crd-img.rndImg {
+    border-radius: 50%;
+    padding: 0;
+}
+
+.crd-img img {
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.crd-img.rndImg img {
+    border-radius: 50%;
+}
+
+.crd-dtl {
+    padding-right: 25px;
+}
+
+.crd-dtl div {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgb(28, 28, 28);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.crd-dtl div:nth-child(2) {
+    padding: 4px 0px;
+    color: rgb(105, 105, 105);
+}
+
+.crd-dtl div:nth-child(3) {
+    color: rgb(31, 31, 31);
+}
+
+.crd-dtl div.specialClass {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.crd-actn {
+    display: flex!important;
+    gap: 10px;
+    align-items: center;
+}
+
+.crd-actn a {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    border: 1px solid rgba(214, 214, 214, 0.9);
+    color: rgb(12, 131, 31);
+    margin-top: 10px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4.5px;
+    cursor: pointer;
+}

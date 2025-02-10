@@ -1,21 +1,23 @@
 import React, { useState, useContext } from "react";
 import { LocationContext } from "../../context/LocationContext";
-import AddressSelectComponent from "../../modal/address-select/AddressSelect";
+import AddressSelectComponent from "../../shared/address-select/AddressSelect";
 import { Modal } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
-import Cart from "../Cart/Cart";
+import Cart from "../../shared/cart/Cart";
+
 const Header = () => {
-  const { selectedAddress } = useContext(LocationContext);
+  const { address } = useContext(LocationContext);
   const [addressModalVsbl, setAddressModalVsbl] = useState(false);
-  const [cartModalVsbl, setCartModalVsbl] = useState(false);
+  const [cartOffcanvasVsbl, setCartOffcanvasVsbl] = useState(false);
 
   const toggleAddressModal = () => {
     setAddressModalVsbl(!addressModalVsbl);
   };
-  const toggleCartModal = () => {
-    setCartModalVsbl(!cartModalVsbl);
+
+  const toggleCartOffcanvas = () => {
+    setCartOffcanvasVsbl(!cartOffcanvasVsbl);
   };
 
   return (
@@ -30,7 +32,7 @@ const Header = () => {
           </div>
         </NavLink>
         <button onClick={toggleAddressModal} className="address">
-          {selectedAddress}
+          {address}
         </button>
       </div>
       <div className="d-flex gap-4 align-items-center">
@@ -39,7 +41,7 @@ const Header = () => {
           <sup>12</sup>
         </button>
         <button
-          onClick={toggleCartModal}
+          onClick={toggleCartOffcanvas}
           className="header-cart-icon text-primary"
         >
           <i className="fa fa-cart-plus fa-lg" />
@@ -55,12 +57,12 @@ const Header = () => {
       </Modal>
 
       <Offcanvas
-        show={cartModalVsbl}
+        show={cartOffcanvasVsbl}
         placement="end"
-        onHide={toggleCartModal}
+        onHide={toggleCartOffcanvas}
         className="cart-offcanvas"
       >
-        <Cart />
+        <Cart closeCartOffcanvas={toggleCartOffcanvas} />
       </Offcanvas>
     </nav>
   );
