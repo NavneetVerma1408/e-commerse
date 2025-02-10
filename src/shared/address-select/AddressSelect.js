@@ -55,23 +55,27 @@ const AddressSelectComponent = ({ closeAddressModal }) => {
               cardImg="https://cdn.grofers.com/layout-engine/v2/2024-12/address_home_icon_v4/light.png"
               cardImgRound={true}
               cardTop="Home"
-              cardBtm="H83V+R2Q, Khajur Colony, Block D, Sector 44, Noida, Uttar
+              cardMdl="H83V+R2Q, Khajur Colony, Block D, Sector 44, Noida, Uttar
                 Pradesh 201303, India"
               cardImgMaxWidth={40}
               specialClassOn={0}
               cardAction={true}
               onCardClick={() => handleChangeAddress(28.5546, 77.34261)}
+              onEditClick={() => alert("Home Edit Clicked")}
+              onDeleteClick={() => alert("Home Delete Clicked")}
             />
             <CommonCard
               cardImg="https://cdn.grofers.com/layout-engine/v2/2024-12/address_home_icon_v4/light.png"
               cardImgRound={true}
               cardTop="Other"
-              cardBtm="OFFICE, SHIV NADAR SCHOOL-3, 1, Noida-Greater Noida Expy,
+              cardMdl="OFFICE, SHIV NADAR SCHOOL-3, 1, Noida-Greater Noida Expy,
                 Chhaprauli Bangar, Sector 135"
               cardImgMaxWidth={40}
               specialClassOn={0}
               cardAction={true}
               onCardClick={() => handleChangeAddress(28.494758, 77.411735)}
+              onEditClick={() => alert("Other Edit Clicked")}
+              onDeleteClick={() => alert("Other Delete Clicked")}
             />
           </div>
         </div>

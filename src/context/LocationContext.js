@@ -44,7 +44,11 @@ export const LocationProvider = ({ children }) => {
         const formattedAddress =
           response.data.results[0]?.formatted_address || "Address not found";
         setAdress(formattedAddress);
-        if (closeAddressModal) closeAddressModal();
+        if (closeAddressModal) {
+          setTimeout(() => {
+            closeAddressModal();
+          }, 800);
+        }
         setTimeout(() => {
           setDetectingLocation(false);
         }, 1000);

@@ -23,9 +23,10 @@ const Cart = ({ closeCartOffcanvas }) => {
             <CommonCard
               cardImg="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=180/assets/eta-icons/15-mins-filled.png"
               cardTop="Delivery in 8 minutes"
-              cardBtm="Shipment of 3 items"
-              cardImgMaxWidth={45}
+              cardMdl="Shipment of 3 items"
+              cardImgMaxWidth={40}
               specialClassOn={0}
+              onCardClick={()=>{}}
             />
           </div>
           <div className="cart-item-card">
@@ -35,6 +36,7 @@ const Cart = ({ closeCartOffcanvas }) => {
               cardMdl="1 pack (32 pieces)"
               cardBtm="₹28"
               specialClassOn={2}
+              onCardClick={()=>{}}
             />
             <AddToCartBtn />
           </div>
@@ -45,6 +47,7 @@ const Cart = ({ closeCartOffcanvas }) => {
               cardMdl="500 ml"
               cardBtm="₹29"
               specialClassOn={2}
+              onCardClick={()=>{}}
             />
             <AddToCartBtn />
           </div>
@@ -55,9 +58,55 @@ const Cart = ({ closeCartOffcanvas }) => {
               cardMdl="1 pack (32 pieces)"
               cardBtm="₹90"
               specialClassOn={2}
+              onCardClick={()=>{}}
             />
             <AddToCartBtn />
           </div>
+        </div>
+
+        <div className="bil-dtl">
+          <h6>Bill details</h6>
+          <div className="bil-card">
+            <div className="bil-lft">
+              <i className="fa-solid fa-receipt"></i>
+              <span>Items total</span>
+            </div>
+            <div>₹57</div>
+          </div>
+          <div className="bil-card">
+            <div className="bil-lft">
+              <i className="fa fa-person-biking"></i>
+              <span>Delivery charge</span>
+            </div>
+            <div>₹30</div>
+          </div>
+          <div className="bil-card">
+            <div className="bil-lft">
+              <i className="fa fa-briefcase"></i>
+              <span>Handling charge</span>
+            </div>
+            <div>₹06</div>
+          </div>
+          <div className="bil-card">
+            <div className="bil-lft">
+              <i className="fa fa-credit-card"></i>
+              <span>Small cart charge</span>
+            </div>
+            <div>₹20</div>
+          </div>
+          <div className="bil-card">
+            <h6>Grand total</h6>
+            <h6>₹113</h6>
+          </div>
+        </div>
+
+        <div className="instrcton">
+          <CommonCard
+            cardTop="Cancellation Policy"
+            cardMdl="Orders cannot be cancelled once packed for delivery. In case of unexpected delays, a refund will be provided, if applicable."
+            specialClassOn={0}
+            onCardClick={()=>{}}
+          />
         </div>
       </div>
     </div>

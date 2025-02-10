@@ -8,16 +8,21 @@ const CommonCard = ({
   cardImgMaxWidth = 70,
   specialClassOn = -1,
   cardAction = false,
-  onCardClick
+  onCardClick,
+  onEditClick,
+  onDeleteClick,
 }) => {
   return (
-    <div className="crd-cntnr" onClick={()=>onCardClick()}>
-      <div
-        className={`crd-img ${cardImgRound ? "rndImg" : ""}`}
-        style={{ height: cardImgMaxWidth + "px" }}
-      >
-        <img src={cardImg} />
-      </div>
+    <div className="crd-cntnr" onClick={() => onCardClick()}>
+      {cardImg && (
+        <div
+          className={`crd-img ${cardImgRound ? "rndImg" : ""}`}
+          style={{ height: cardImgMaxWidth + "px" }}
+        >
+          <img src={cardImg} />
+        </div>
+      )}
+
       <div className="crd-dtl">
         <div className={specialClassOn == 0 ? "specialClass" : ""}>
           {cardTop}
@@ -30,10 +35,20 @@ const CommonCard = ({
         </div>
         {cardAction && (
           <div className="crd-actn">
-            <a>
+            <a
+              onClick={(e) => {
+                e.stopPropagation();
+                onEditClick();
+              }}
+            >
               <i className="fa fa-pencil text-success" />
             </a>
-            <a>
+            <a
+              onClick={(e) => {
+                e.stopPropagation();
+                onDeleteClick();
+              }}
+            >
               <i className="fa fa-trash text-danger" />
             </a>
           </div>
