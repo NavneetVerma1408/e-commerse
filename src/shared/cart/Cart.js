@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./Cart.css";
 import CommonCard from "../common-card/CommonCard";
 import { LocationContext } from "../../context/LocationContext";
+import PayCard from "../pay-card/PayCard";
 // import AddToCartBtn from "../add-to-cart-btn/AddToCartBtn";
 const Cart = ({ closeCartOffcanvas }) => {
   const { address } = useContext(LocationContext);
@@ -123,6 +124,7 @@ const Cart = ({ closeCartOffcanvas }) => {
               onCardClick={() => {}}
             />
           </div>
+          <PayCard />
         </div>
       </div>
     </div>

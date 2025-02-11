@@ -45,16 +45,18 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    width: 100%;
 }
 
 .slctd-addr {
     display: flex;
     justify-content: space-between;
     align-items: self-start;
+    border-bottom: 1px solid #eee;
 }
 
-.slctd-addr a {
-   
+.slctd-addr .crd-cntnr {
+    border-radius: 25px;
 }

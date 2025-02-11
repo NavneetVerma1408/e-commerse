@@ -1,0 +1,31 @@
+.pay-crd {
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #318616;
+    border-radius: 10px;
+}
+
+.pay-crd .crd-cntnr {
+    background: #318616;
+}
+
+.pay-crd .crd-img {
+    border: none;
+}
+
+.pay-crd .crd-dtl>div,
+.pay-crd .cardMdl {
+    color: #fff;
+}
+
+.pay-crd .prcd-pay {
+    font-size: 16px;
+    font-weight: 400;
+    color: #fff;
+    white-space: nowrap;
+    text-decoration: none;
+    padding-right: 10px;
+    cursor: pointer;
+}
