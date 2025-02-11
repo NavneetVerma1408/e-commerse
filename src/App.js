@@ -9,6 +9,7 @@ const App = () => {
     <Router>
       <LocationProvider>
         <Header />
+        <div className="dummyHomeImg"></div>
         <div className="pay-crd-btm">
           <PayCard />
         </div>
