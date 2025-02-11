@@ -8,10 +8,20 @@
     width: 100%;
 }
 
+.crd-cntnr.crd-colmn {
+    flex-direction: column;
+    border: 1px solid #eee;
+    gap: 0;
+}
+
 .crd-img {
     border: 1px solid #eee;
     border-radius: 8px;
     padding: 2px;
+}
+
+.crd-colmn .crd-img {
+    border: none;
 }
 
 .crd-img.rndImg {
@@ -25,12 +35,20 @@
     object-fit: cover;
 }
 
+.crd-colmn .crd-img img {
+    margin: auto;
+}
+
 .crd-img.rndImg img {
     border-radius: 50%;
 }
 
 .crd-dtl {
     padding-right: 15px;
+}
+
+.crd-colmn .crd-dtl {
+    padding-right: 0;
 }
 
 .crd-dtl>div {
@@ -47,6 +65,11 @@
 .cardMdl {
     padding: 4px 0px;
     color: rgb(105, 105, 105);
+}
+
+.crd-colmn .cardMdl {
+    margin-top: 15px;
+    margin-bottom: 30px;
 }
 
 .cardBtm {

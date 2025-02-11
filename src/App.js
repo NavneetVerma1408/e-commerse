@@ -4,12 +4,13 @@ import Header from "./component/header/Header";
 import { LocationProvider } from "./context/LocationContext";
 import PayCard from "./shared/pay-card/PayCard";
 import "./App.css";
+import Home from "./component/home/Home";
 const App = () => {
   return (
     <Router>
       <LocationProvider>
         <Header />
-        <div className="dummyHomeImg"></div>
+        <Home/>
         <div className="pay-crd-btm">
           <PayCard />
         </div>

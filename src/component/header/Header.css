@@ -12,6 +12,13 @@
     text-decoration: none;
 }
 
+.addr-cntnr h6 {
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-size: 18px;
+}
+
 .nav-left button.address {
     max-width: 300px;
     color: #000000;
@@ -24,28 +31,22 @@
     font-size: 14px;
     line-height: 16px;
     font-weight: 500;
+    text-align: start;
 }
 
-.branding {
-    position: relative;
+
+.brnd {
+    font-size: 34px;
+    font-weight: 900;
+    line-height: 36px;
 }
 
-.branding-left {
-    line-height: 40px;
-    font-size: 40px;
-    color: #198754;
+.brnd-ylow {
+    color: #F8CB46;
 }
 
-.branding-right {
-    position: absolute;
-    bottom: 15%;
-    left: 20px;
-    font-size: 15px;
-}
-
-.branding-right span {
-    display: block;
-    line-height: 10px;
+.brnd-grn {
+    color: #54B226;
 }
 
 button {

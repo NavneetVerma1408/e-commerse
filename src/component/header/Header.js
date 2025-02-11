@@ -24,16 +24,17 @@ const Header = () => {
     <nav className="navbar navbar-light bg-light">
       <div className="nav-left d-flex gap-4 align-items-center">
         <NavLink to="/" className="navbar-brand">
-          <div className="branding">
-            <div className="branding-left">S</div>
-            <div className="branding-right">
-              <span>hop</span>
-            </div>
+          <div className="brnd">
+            <span className="brnd-ylow">blink</span>
+            <span className="brnd-grn">it</span>
           </div>
         </NavLink>
-        <button onClick={toggleAddressModal} className="address">
-          {address}
-        </button>
+        <div className="addr-cntnr">
+          <h6>Delivery in 8 minutes</h6>
+          <button onClick={toggleAddressModal} className="address">
+            {address}
+          </button>
+        </div>
       </div>
       <div className="d-flex gap-4 align-items-center">
         <button className="header-wishlist-icon text-success">

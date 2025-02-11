@@ -1,11 +1,13 @@
 import AddToCartBtn from "../add-to-cart-btn/AddToCartBtn";
 import "./CommonCard.css";
 const CommonCard = ({
+  cardColmn = false,
   cardImg,
   cardImgRound,
   cardTop,
   cardMdl,
   cardBtm,
+  cardMaxWdth = 125,
   cardImgHght = 70,
   specialClassOn = -1,
   onCardClick,
@@ -16,7 +18,11 @@ const CommonCard = ({
   chngAddr = false,
 }) => {
   return (
-    <div className="crd-cntnr" onClick={() => onCardClick()}>
+    <div
+      className={`crd-cntnr ${cardColmn ? "crd-colmn" : ""}`}
+      style={{ maxWidth: cardColmn ? cardMaxWdth : "" }}
+      onClick={() => onCardClick()}
+    >
       {cardImg && (
         <div
           className={`crd-img ${cardImgRound ? "rndImg" : ""}`}
