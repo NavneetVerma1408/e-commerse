@@ -1,6 +1,6 @@
 ﻿namespace ECommerceAPI.Dto
 {
-    public class AddUpdateCategory
+    public class AddUpdateCategoryDto
     {
         public int CategoryId { get; set; }
         public string Name { get; set; } = null!;

@@ -34,7 +34,7 @@ namespace ECommerceAPI.Controllers
         }
 
         [HttpPost("Add")]
-        public async Task<IActionResult> CreateCategory([FromForm] AddUpdateCategory addCategory)
+        public async Task<IActionResult> CreateCategory([FromForm] AddUpdateCategoryDto addCategory)
         {
             if (addCategory.Image == null || addCategory.Image.Length == 0)
                 return BadRequest("Image is required.");
@@ -65,26 +65,26 @@ namespace ECommerceAPI.Controllers
         }
 
         
-        [HttpPut("Update/{id}")]
-        public async Task<IActionResult> UpdateCategory(int id, [FromForm] string name, [FromForm] string description, [FromForm] IFormFile image)
+        [HttpPut("Update")]
+        public async Task<IActionResult> UpdateCategory([FromForm] AddUpdateCategoryDto updateCategory)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _context.Categories.FindAsync(updateCategory.CategoryId);
             if (category == null)
                 return NotFound();
 
-            category.Name = name;
-            category.Description = description;
+            category.Name = updateCategory.Name;
+            category.Description = updateCategory.Description;
 
             // Update image if provided
-            if (image != null && image.Length > 0)
+            if (updateCategory.Image != null && updateCategory.Image.Length > 0)
             {
-                var filePath = Path.Combine("wwwroot/uploads/categories", image.FileName);
+                var filePath = Path.Combine("wwwroot/uploads/categories", updateCategory.Image.FileName);
                 Directory.CreateDirectory(Path.GetDirectoryName(filePath)); // Ensure the directory exists
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await image.CopyToAsync(stream);
+                    await updateCategory.Image.CopyToAsync(stream);
                 }
-                category.Image = $"/uploads/categories/{image.FileName}";
+                category.Image = $"/uploads/categories/{updateCategory.Image.FileName}";
             }
 
             _context.Entry(category).State = EntityState.Modified;
@@ -114,13 +114,5 @@ namespace ECommerceAPI.Controllers
             return NoContent();
         }
 
-
-        [HttpDelete("RTest")]
-        public async Task<IActionResult> Test([FromForm] IFormFile file)
-        {
-            
-
-            return NoContent();
-        }
     }
 }
