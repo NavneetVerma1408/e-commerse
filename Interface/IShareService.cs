@@ -4,6 +4,5 @@
     {
         string SaveImage(IFormFile image, string directoryPath);
         void DeleteImage(string relativePath);
-
     }
 }
