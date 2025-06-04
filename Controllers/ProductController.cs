@@ -10,7 +10,6 @@ namespace ECommerceAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [ValidateModel]
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;

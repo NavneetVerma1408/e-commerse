@@ -5,8 +5,8 @@ using ECommerceAPI.Interface;
 
 namespace ECommerceAPI.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
