@@ -1,118 +1,70 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ECommerceAPI.Models;
 using ECommerceAPI.Dto;
+using ECommerceAPI.Models;
+using ECommerceAPI.Interface;
 
 namespace ECommerceAPI.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
-   // [ApiController]
-    public class CategoryController : Controller
+    public class CategoryController : ControllerBase
     {
-        private readonly ECommerceContext _context;
+        private readonly ICategoryService _categoryService;
 
-        public CategoryController(ECommerceContext context)
+        public CategoryController(ICategoryService categoryService)
         {
-            _context = context;
+            _categoryService = categoryService;
         }
 
         [HttpGet("List")]
         public async Task<IActionResult> GetCategories()
         {
-            var categories = await _context.Categories.ToListAsync();
-            return Ok(categories);
+            var categories = await _categoryService.GetCategoriesAsync();
+            var response = new ApiResponse<List<Category>>(1, "Categories retrieved successfully.", categories);
+            return Ok(response);
         }
 
         [HttpGet("Detail/{id}")]
-        public async Task<IActionResult> GetCategory(int id)
+        public async Task<IActionResult> GetCategoryDetail(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _categoryService.GetCategoryByIdAsync(id);
             if (category == null)
-                return NotFound();
+                return NotFound(new ApiResponse<object>(0, "Category not found.", null));
 
-            return Ok(category);
+            return Ok(new ApiResponse<Category>(1, "Category retrieved successfully.", category));
         }
 
         [HttpPost("Add")]
-        public async Task<IActionResult> CreateCategory([FromForm] AddUpdateCategoryDto addCategory)
+        public async Task<IActionResult> AddCategory([FromForm] AddUpdateCategoryDto addCategory)
         {
             if (addCategory.Image == null || addCategory.Image.Length == 0)
-                return BadRequest("Image is required.");
+                return BadRequest(new ApiResponse<object>(0, "Image is required.", null));
 
-            string fileNameWithExtention = addCategory.Image.FileName.ToString();
-            int index = fileNameWithExtention.LastIndexOf(".");
-            string fileNameWithoutExtention = fileNameWithExtention.Substring(0, index);
-            string fileExtention = fileNameWithExtention.Substring(index);
+            var category = await _categoryService.AddCategoryAsync(addCategory);
 
-            var filePath = Path.Combine("wwwroot/uploads/categories", fileNameWithoutExtention + DateTime.Now.ToString("ddMMyyHHmmss") + fileExtention); ;
-            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await addCategory.Image.CopyToAsync(stream);
-            }
-
-            var category = new Category
-            {
-                Name = addCategory.Name,
-                Description = addCategory.Description,
-                Image = $"/uploads/categories/{addCategory.Image.FileName}"
-            };
-
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetCategory), new { id = category.CategoryId }, category);
+            return CreatedAtAction(nameof(GetCategoryDetail), new { id = category.CategoryId }, new ApiResponse<Category>(1, "Category created successfully.", category));
         }
 
-        
         [HttpPut("Update")]
         public async Task<IActionResult> UpdateCategory([FromForm] AddUpdateCategoryDto updateCategory)
         {
-            var category = await _context.Categories.FindAsync(updateCategory.CategoryId);
+            var category = await _categoryService.UpdateCategoryAsync(updateCategory);
+
             if (category == null)
-                return NotFound();
+                return NotFound(new ApiResponse<object>(0, "Category not found.", null));
 
-            category.Name = updateCategory.Name;
-            category.Description = updateCategory.Description;
-
-            // Update image if provided
-            if (updateCategory.Image != null && updateCategory.Image.Length > 0)
-            {
-                var filePath = Path.Combine("wwwroot/uploads/categories", updateCategory.Image.FileName);
-                Directory.CreateDirectory(Path.GetDirectoryName(filePath)); // Ensure the directory exists
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await updateCategory.Image.CopyToAsync(stream);
-                }
-                category.Image = $"/uploads/categories/{updateCategory.Image.FileName}";
-            }
-
-            _context.Entry(category).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return Ok(new ApiResponse<Category>(1, "Category updated successfully.", category));
         }
 
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
-                return NotFound();
+            var deleted = await _categoryService.DeleteCategoryAsync(id);
 
-            // Remove associated image if exists
-            if (!string.IsNullOrEmpty(category.Image))
-            {
-                var filePath = Path.Combine("wwwroot", category.Image.TrimStart('/'));
-                if (System.IO.File.Exists(filePath))
-                    System.IO.File.Delete(filePath);
-            }
+            if (!deleted)
+                return NotFound(new ApiResponse<object>(0, "Category not found.", null));
 
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return Ok(new ApiResponse<object>(1, "Category deleted successfully.", null));
         }
-
     }
 }
